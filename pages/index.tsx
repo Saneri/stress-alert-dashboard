@@ -7,10 +7,17 @@ import MessageCounter from '../components/MessageCounter';
 import GaugeChart from '../components/Gauge';
 import { Footer } from 'antd/lib/layout/layout';
 
+const axios = require('axios');
+
+const instance = axios.create({
+  baseURL: 'https://stress-alert.ew.r.appspot.com',
+  timeout: 5000
+});
+
 export async function getStaticProps() {
-  const response = await fetch('http://localhost:3000/api/values');
+  const { data } = await instance.get('/stress-values');
   return {
-    props: { values: await response.json() }
+    props: { values: data }
   };
 }
 
