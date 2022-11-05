@@ -12,15 +12,18 @@ const MessageCounter = (props: Props) => {
   const stressMessageCount = props.values
     .map((value) => value.stressValues.stressMessages)
     .reduce((a, b) => a + b, 0);
-  const average = stressMessageCount / messageCount;
+  const average = (stressMessageCount / messageCount) * 100;
+
   return (
-    <>
+    <div className="grid grid-cols-2 gap-6 mt-4 justify-items-center">
       <Statistic title="Total stressful messages" value={messageCount} />
       <Statistic
         title="Percentage of stressful messages"
-        value={`${average.toFixed(2)}%`}
+        value={average}
+        precision={1}
+        suffix="%"
       />
-    </>
+    </div>
   );
 };
 
