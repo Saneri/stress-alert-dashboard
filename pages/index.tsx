@@ -31,7 +31,7 @@ export default function Home({ values }: { values: any }) {
       <main>
         <Navbar></Navbar>
         <div className="mx-auto max-w-[1440px] px-4 w-full py-10">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="md:grid grid-cols-2 gap-4">
             <Card>
               <GaugeChart className={'col-span-2'} values={values} />
               <MessageCounter values={values} />

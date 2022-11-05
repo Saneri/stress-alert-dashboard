@@ -23,11 +23,11 @@ export const Navbar = () => {
     <Header className="bg-white shadow-lg flex flex-row items-center">
       <Image alt="Logo" src={'/stress-alert.png'} height={'30'} width={'30'} />
       <h1 className="text-xl ml-8 mr-4">Stress Alert</h1>
-      <nav className="flex flex-row items-center">
+      <nav className="flex-row hidden lg:flex items-center overflow-x-scroll">
         {navItems.map((item) => (
           <Link
             href="/"
-            className="flex flex-row mx-4 items-center"
+            className="flex flex-row flex-wrap mx-4 items-center"
             key={item.key}
           >
             {item.icon}
