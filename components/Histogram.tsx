@@ -14,8 +14,6 @@ export const getStressLevel = (v: StressValues): number => {
 };
 
 const Histogram: FC<HistogramProps> = ({ values, className, channelName }) => {
-
-
   const data = flatMap(
     groupBy(
       channelName
@@ -34,7 +32,8 @@ const Histogram: FC<HistogramProps> = ({ values, className, channelName }) => {
         )
       };
     }
-  );
+    // Take 200 first values
+  ).slice(0, 200);
   const config = {
     data,
     xField: 'timestamp',

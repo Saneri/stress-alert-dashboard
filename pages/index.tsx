@@ -39,13 +39,12 @@ export default function Home({ values }: { values: any }) {
             <Card title="Stressful messages by channels">
               <PieChart values={values} />
             </Card>
-            <Card className="col-span-2" title="Weekly stress levels">
+            <Card className="col-span-2" title="Stressflow">
               <Histogram values={values} />
             </Card>
           </div>
         </div>
       </main>
-      <Footer></Footer>
     </div>
   );
 }

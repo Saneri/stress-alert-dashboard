@@ -16,7 +16,7 @@ const MessageCounter = (props: Props) => {
 
   return (
     <div className="grid grid-cols-2 gap-6 mt-4 justify-items-center">
-      <Statistic title="Total stressful messages" value={messageCount} />
+      <Statistic title="Total stressful messages" value={stressMessageCount} />
       <Statistic
         title="Percentage of stressful messages"
         value={average}
