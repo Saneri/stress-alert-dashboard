@@ -24,8 +24,12 @@ const Histogram: FC<HistogramProps> = ({ values, className, channelName }) => {
     (values) => {
       return {
         timestamp: values[0].timestamp,
-        stressValue:
-          values.map(getStressLevel).reduce((a, b) => a + b, 0) / values.length
+        stressValue: Number(
+          (
+            values.map(getStressLevel).reduce((a, b) => a + b, 0) /
+            values.length
+          ).toFixed(0)
+        )
       };
     }
   );
