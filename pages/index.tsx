@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import PieChart from '../components/Pie';
 import MessageCounter from '../components/MessageCounter';
 import GaugeChart from '../components/Gauge';
+import { Footer } from 'antd/lib/layout/layout';
 
 export async function getStaticProps() {
   const response = await fetch('http://localhost:3000/api/values');
@@ -37,6 +38,7 @@ export default function Home({ values }: { values: any }) {
           </div>
         </div>
       </main>
+      <Footer></Footer>
     </div>
   );
 }
