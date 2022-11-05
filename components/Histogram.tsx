@@ -1,68 +1,21 @@
 import { Column } from '@ant-design/plots';
+import { FC } from 'react';
+import { StressValues } from '../types/stressValues';
 
-type Props = {};
-
-type ColumnDataPoint = {
-  timestamp: string;
-  stressMessageAmount: number;
+type HistogramProps = {
+  values: StressValues[];
 };
 
-const Histogram = (props: Props) => {
-  const data: ColumnDataPoint[] = [
-    {
-      timestamp: '1',
-      stressMessageAmount: 3
-    },
-    {
-      timestamp: '2',
-      stressMessageAmount: 16
-    },
-    {
-      timestamp: '3',
-      stressMessageAmount: 4
-    },
-    {
-      timestamp: '4',
-      stressMessageAmount: 8
-    },
-    {
-      timestamp: '5',
-      stressMessageAmount: 3
-    },
-    {
-      timestamp: '7',
-      stressMessageAmount: 16
-    },
-    {
-      timestamp: '9',
-      stressMessageAmount: 4
-    },
-    {
-      timestamp: '10',
-      stressMessageAmount: 0
-    },
-    {
-      timestamp: '11',
-      stressMessageAmount: 0
-    },
-    {
-      timestamp: '12',
-      stressMessageAmount: 0
-    },
-    {
-      timestamp: '13',
-      stressMessageAmount: 0
-    },
-    {
-      timestamp: '16',
-      stressMessageAmount: 8
-    }
-  ];
-
+const Histogram: FC<HistogramProps> = ({ values }) => {
+  const data = values.map((v) => ({
+    timestamp: v.timestamp,
+    stressValue:
+      (v.stressValues.stressMessages / v.stressValues.messageCount) * 100
+  }));
   const config = {
     data,
     xField: 'timestamp',
-    yField: 'stressMessageAmount',
+    yField: 'stressValue',
     xAxis: {
       label: {
         autoRotate: false

@@ -4,11 +4,10 @@ import Navbar from '../components/Navbar';
 import Histogram from '../components/Histogram';
 import { ContentWrapper } from './styles';
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const response = await fetch('http://localhost:3000/api/values');
-  const values = await response.json();
   return {
-    props: { values }
+    props: { values: await response.json() }
   };
 }
 
@@ -17,10 +16,9 @@ export default function Home({ values }: { values: any }) {
   return (
     <div>
       <Head>
-        <title>Dashboard</title>
+        <title>Stress Alert | Dashboard</title>
         <meta name="description" content="Stress Alert dashboard" />
       </Head>
-
       <main>
         <Navbar />
         <ContentWrapper>
@@ -28,7 +26,7 @@ export default function Home({ values }: { values: any }) {
             stressMessageAmount={testData.stressMessages}
             totalMessageAmount={testData.messageCount}
           />
-          <Histogram />
+          <Histogram values={values} />
         </ContentWrapper>
       </main>
     </div>
