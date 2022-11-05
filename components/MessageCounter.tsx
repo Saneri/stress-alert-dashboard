@@ -1,14 +1,19 @@
+import { Card } from 'antd';
+
 type Props = {
-  values: number[];
+  stressMessageAmount: number;
+  totalMessageAmount: number;
 };
 
-export const MessageCounter = (props: Props) => {
-  const amountOfOnes = props.values.filter((x) => x === 1).length;
-  const percentage = amountOfOnes / props.values.length;
+const MessageCounter = (props: Props) => {
+  const average = props.stressMessageAmount / props.totalMessageAmount;
+
   return (
-    <>
-      <div>amount: {amountOfOnes}</div>
-      <div>percentage: {percentage.toFixed(2)}</div>
-    </>
+    <Card>
+      <div>amount: {props.stressMessageAmount}</div>
+      <div>percentage: {average.toFixed(2)}</div>
+    </Card>
   );
 };
+
+export default MessageCounter;
