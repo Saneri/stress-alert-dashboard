@@ -9,10 +9,12 @@ type HistogramProps = {
   channelName?: string;
 };
 
+export const getStressLevel = (v: StressValues): number => {
+  return (v.stressValues.stressMessages / v.stressValues.messageCount) * 100;
+};
+
 const Histogram: FC<HistogramProps> = ({ values, className, channelName }) => {
-  const getStressLevel = (v: StressValues): number => {
-    return (v.stressValues.stressMessages / v.stressValues.messageCount) * 100;
-  };
+
 
   const data = flatMap(
     groupBy(
@@ -24,11 +26,11 @@ const Histogram: FC<HistogramProps> = ({ values, className, channelName }) => {
     (values) => {
       return {
         timestamp: values[0].timestamp,
-        stressValue: Number(
+        'Stress level': Number(
           (
             values.map(getStressLevel).reduce((a, b) => a + b, 0) /
             values.length
-          ).toFixed(0)
+          ).toFixed()
         )
       };
     }
@@ -36,18 +38,32 @@ const Histogram: FC<HistogramProps> = ({ values, className, channelName }) => {
   const config = {
     data,
     xField: 'timestamp',
-    yField: 'stressValue',
+    yField: 'Stress level',
     xAxis: {
       range: [0, 1],
-      tickCount: 28
+      tickCount: data.length
     },
-    smooth: true,
-    line: {
-      color: 'transparent'
+    point: {
+      size: 5,
+      shape: 'diamond',
+      style: {
+        fill: 'white',
+        stroke: '#5B8FF9',
+        lineWidth: 2
+      }
     },
-    areaStyle: () => ({
-      fill: 'l(270) 0:#33cc33 0.25:#33cc33 0.75:#ff0000 1:#ff0000'
-    })
+    tooltip: {
+      showMarkers: false
+    },
+    state: {
+      active: {
+        style: {
+          shadowBlur: 4,
+          stroke: '#000',
+          fill: 'red'
+        }
+      }
+    }
   };
   return <Area className={className} {...config} />;
 };

@@ -1,8 +1,10 @@
 import { Card } from 'antd';
 import Head from 'next/head';
 import Histogram from '../components/Histogram';
+import Navbar from '../components/Navbar';
 import PieChart from '../components/Pie';
 import MessageCounter from '../components/MessageCounter';
+import GaugeChart from '../components/Gauge';
 
 export async function getStaticProps() {
   const response = await fetch('http://localhost:3000/api/values');
@@ -19,12 +21,14 @@ export default function Home({ values }: { values: any }) {
         <meta name="description" content="Stress Alert dashboard" />
       </Head>
       <main>
+        <Navbar></Navbar>
         <div className="mx-auto max-w-[1440px] px-4 w-full py-10">
           <div className="grid grid-cols-2 gap-4">
             <Card>
+              <GaugeChart className={'col-span-2'} values={values} />
               <MessageCounter values={values} />
             </Card>
-            <Card title="Stress messages by channels">
+            <Card title="Stressful messages by channels">
               <PieChart values={values} />
             </Card>
             <Card className="col-span-2" title="Weekly stress levels">
