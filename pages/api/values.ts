@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 const axios = require('axios');
 
-
 const instance = axios.create({
-  baseURL: process.env.BOT_URL,
+  baseURL: 'https://stress-alert.ew.r.appspot.com',
   timeout: 5000
 });
 
