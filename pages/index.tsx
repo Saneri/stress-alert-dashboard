@@ -1,3 +1,4 @@
+import { Card } from 'antd';
 import Head from 'next/head';
 import Histogram from '../components/Histogram';
 import PieChart from '../components/Pie';
@@ -18,9 +19,16 @@ export default function Home({ values }: { values: any }) {
       </Head>
       <main>
         <div className="mx-auto max-w-[1440px] px-4 w-full py-10">
-          <PieChart className="flex-1" values={values} />
-          <div>
-            <Histogram values={values} />
+          <div className="grid grid-cols-2 gap-4">
+            <Card>
+              <h3>FOOO</h3>
+            </Card>
+            <Card title="Stress messages by channels">
+              <PieChart values={values} />
+            </Card>
+            <Card className="col-span-2" title="Weekly stress levels">
+              <Histogram values={values} />
+            </Card>
           </div>
         </div>
       </main>
