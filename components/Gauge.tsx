@@ -27,7 +27,7 @@ const GaugeChart: FC<GaugeProps> = ({ values, className }) => {
     innerRadius: 0.75,
     range: {
       ticks: [0, 1 / 3, 2 / 3, 1],
-      color: ['#30BF78', '#FAAD14', '#F4664A']
+      color: ['#58c499', '#FAAD14', '#F4664A']
     },
     indicator: {
       pointer: {
