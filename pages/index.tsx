@@ -2,7 +2,6 @@ import Head from 'next/head';
 import MessageCounter from '../components/MessageCounter';
 import Navbar from '../components/Navbar';
 import Histogram from '../components/Histogram';
-import { ContentWrapper } from './styles';
 
 export async function getStaticProps() {
   const response = await fetch('http://localhost:3000/api/values');
@@ -12,7 +11,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({ values }: { values: any }) {
-  const testData = values[0].stressValues;
   return (
     <div>
       <Head>
@@ -21,13 +19,11 @@ export default function Home({ values }: { values: any }) {
       </Head>
       <main>
         <Navbar />
-        <ContentWrapper>
-          <MessageCounter
-            stressMessageAmount={testData.stressMessages}
-            totalMessageAmount={testData.messageCount}
-          />
-          <Histogram values={values} />
-        </ContentWrapper>
+        <div className="mx-auto max-w-[1440px] px-4 w-full py-10">
+          <div className="flex flex-row">
+            <Histogram className="flex-1" values={values} />
+          </div>
+        </div>
       </main>
     </div>
   );
