@@ -24,7 +24,7 @@ const Histogram: FC<HistogramProps> = ({ values, className }) => {
         ).toFixed()
       )
     })),
-    ['channelName', 'timestamp']
+    ['timestamp', 'channelName']
   );
 
   const config = {

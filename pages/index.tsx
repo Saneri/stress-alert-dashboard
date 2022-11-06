@@ -5,7 +5,6 @@ import Navbar from '../components/Navbar';
 import PieChart from '../components/Pie';
 import MessageCounter from '../components/MessageCounter';
 import GaugeChart from '../components/Gauge';
-import { Footer } from 'antd/lib/layout/layout';
 
 const axios = require('axios');
 
@@ -17,7 +16,7 @@ const instance = axios.create({
 export async function getStaticProps() {
   const { data } = await instance.get('/stress-values');
   return {
-    props: { values: data }
+    props: { values: data, revalidate: 30 }
   };
 }
 
